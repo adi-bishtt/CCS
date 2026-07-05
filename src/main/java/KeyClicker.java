@@ -6,6 +6,7 @@ public class KeyClicker {
     private Robot robot;
     private final int resignX;
     private final int resignY;
+    AudioPlayer player = new AudioPlayer("rage.wav");
 
     public KeyClicker(int resignX, int resignY) {
         this.resignX = resignX;
@@ -34,6 +35,7 @@ public class KeyClicker {
             Thread.sleep(50);
             robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
             robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+            new Thread(player::playSync).start();
 
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
